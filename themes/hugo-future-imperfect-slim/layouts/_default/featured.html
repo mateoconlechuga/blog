@@ -1,6 +1,5 @@
 {{- if or .Params.images .Params.featured -}}
-  {{- $src = (path.Join ($.Page.RelPermalink) "header.webp") -}}
-  {{- $alt := "Header Image" -}}
+  {{- $src := (path.Join ($.Page.RelPermalink) "header.webp") -}}
   {{- $stretch := .Site.Params.imageStretch -}}
   {{- $blur := .Site.Params.removeBlur -}}
   {{- if .Params.featured -}}
@@ -21,6 +20,6 @@
     {{- end -}}
   {{- end -}}
   <a href="{{ $.Page.RelPermalink }}" class="image"{{ if not ($blur) }} style="--bg-image: url('{{ $src }}');"{{ end }}>
-    <img {{ with $stretch }}class="{{ if or (eq (lower .) "vertical") (eq (lower .) "v") }}stretchV{{ else if or (eq (lower .) "horizontal") (eq (lower .) "h") }}stretchH{{ else if or (eq (lower .) "cover") (eq (lower .) "c") }}cover{{ end }}" {{ end }}src="{{ $src }}" alt="{{ $alt }}">
+    <img {{ with $stretch }}class="{{ if or (eq (lower .) "vertical") (eq (lower .) "v") }}stretchV{{ else if or (eq (lower .) "horizontal") (eq (lower .) "h") }}stretchH{{ else if or (eq (lower .) "cover") (eq (lower .) "c") }}cover{{ end }}" {{ end }}src="{{ $src }}" alt="Header Image">
   </a>
 {{- end -}}
