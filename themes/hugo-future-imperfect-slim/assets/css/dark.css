@@ -1,0 +1,69 @@
+html {
+    background-color: #171717 !important;
+}
+html {
+    filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(85%);
+    -webkit-filter: invert(100%) hue-rotate(180deg) brightness(105%) contrast(85%);
+}
+body {
+    background-color: #FFF !important;
+}
+img,
+video,
+.giscus {
+    filter: hue-rotate(180deg) contrast(100%) invert(100%);
+    -webkit-filter: hue-rotate(180deg) contrast(100%) invert(100%);
+}
+
+#site-header {
+  box-shadow: none;
+  background: #D8D8D8;
+}
+
+.post {
+  box-shadow: none;
+  background: #E8E8E8;
+}
+
+.mini-post {
+  box-shadow: none;
+  background: #E8E8E8;
+}
+
+
+.nav {
+  font-weight: 700;
+}
+
+.flyout-menu {
+  box-shadow: none;
+}
+
+.flyout-menu {
+  &.active {
+    box-shadow: none;
+  }
+}
+
+
+table {
+  box-shadow: none;
+}
+
+figure {
+  background: #E8E8E8;
+  box-shadow: none;
+}
+
+.quotes {
+  font-weight: 660;
+}
+
+.pagination {
+  .button {
+    margin: 1em;
+    width: 50%;
+  }
+}
+
+

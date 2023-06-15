@@ -1,0 +1,42 @@
+<head>
+  {{ partial "meta" . }}
+  {{ hugo.Generator }}
+  {{ if .Site.Params.enableCDN }}
+    {{- range .Site.Params.cssFiles -}}
+      {{- if eq . "default" -}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800,900|Source+Sans+Pro:400,700">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+        <script src="https://kit.fontawesome.com/be54eb011a.js" crossorigin="anonymous"></script>
+        {{- $mainCSSOptions := (dict "targetPath" "css/main.min.css" "outputStyle" "compressed") -}}
+        {{- $main := resources.Get "scss/main.scss" | resources.ToCSS $mainCSSOptions | resources.Fingerprint -}}
+        <link rel="stylesheet" href="{{ $main.RelPermalink }}" integrity="{{ $main.Data.Integrity }}">
+        {{- if eq (i18n "letter_direction") "RTL" -}}
+          {{- $rtl := resources.Get "css/rtl.css" | minify -}}
+          <link rel="stylesheet" href="{{ $rtl.RelPermalink }}">
+        {{- end -}}
+      {{- else }}
+        <link rel="stylesheet" href="{{ . | relURL }}">
+      {{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- range .Site.Params.cssFiles -}}
+      {{- if eq . "default" -}}
+        {{- $cssSlice := slice -}}
+        {{- $assets := resources.Get "assets.json" | unmarshal -}}
+        {{- range $assets.styles -}}
+          {{- $cssSlice = $cssSlice | append (resources.Get . ) -}}
+        {{- end -}}
+        {{- $cssSlice = $cssSlice | append (resources.Get "scss/main.scss" | toCSS) -}}
+        {{- $css := $cssSlice | resources.Concat "css/bundle.css" | minify | fingerprint -}}
+        <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+      {{- else }}
+        <link rel="stylesheet" href="{{ . | relURL }}">
+      {{- end -}}
+    {{- end -}}
+    {{- $darkmode := resources.Get "css/dark.css" | minify -}}
+    <link disabled id="dark-mode-theme" rel="stylesheet" href="{{ $darkmode.RelPermalink }}">
+  {{- end -}}
+  {{- .Scratch.Set "Permalink" .Permalink -}}
+  {{- .Scratch.Set "Title" .Title -}}
+</head>

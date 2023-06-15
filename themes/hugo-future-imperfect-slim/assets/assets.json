@@ -1,0 +1,8 @@
+{
+   "styles" : [
+      "css/normalize.css",
+      "css/fonts.css",
+      "css/academicons.css",
+      "css/fontawesome.css"
+   ]
+}

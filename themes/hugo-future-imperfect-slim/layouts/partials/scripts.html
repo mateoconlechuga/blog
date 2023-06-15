@@ -1,0 +1,18 @@
+{{- if .Site.Params.enableCDN -}}
+  {{- range .Site.Params.jsFiles -}}
+      {{- $jsSlice := slice (resources.Get "js/main.js" | resources.ExecuteAsTemplate "js/main.js" $.Site) -}}
+      {{- $js := $jsSlice | resources.Concat "js/bundlecdn.js" | minify | fingerprint -}}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+  {{- end -}}
+{{- else -}}
+  {{- range .Site.Params.jsFiles -}}
+    {{- $jsSlice := slice -}}
+    {{- $assets := resources.Get "assets.json" | unmarshal -}}
+    {{- range $assets.scripts -}}
+      {{- $jsSlice = $jsSlice | append (resources.Get . ) -}}
+    {{- end -}}
+    {{- $jsSlice = $jsSlice | append (resources.Get "js/main.js" | resources.ExecuteAsTemplate "js/main.js" $.Site) -}}
+    {{- $js := $jsSlice | resources.Concat "js/bundle.js" | minify | fingerprint -}}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+  {{- end -}}
+{{- end -}}

@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <article class="post">
+    <header>
+      <div class="title">
+        <h1><a href="{{ .RelPermalink }}">Page Not Found</a></h1>
+        <p>Sorry, but the page you were trying to view does not exist.</p>
+      </div>
+    </header>
+    <div id="content">
+     </br>
+<figure><img src="/img/error.webp" alt="A random mountain in Washington"><figcaption>
+            <p>A random mountain in Washington</p>
+        </figcaption>
+</figure>
+     </br>
+    </div>
+  </article>
+{{ end }}
+<!doctype html>
+<html lang="{{ .Page.Language | default "en" }}">
+  {{ partial "head" . }}
+  <body>
+    {{ partial "site-header" . }}
+    <div id="wrapper">
+      {{ partial "site-intro" . }}
+      <main id="site-main">
+        {{ block "main" . }}{{ end }}
+      </main>
+      {{ partial "scripts" . }}
+    </div>
+  </body>
+</html>
