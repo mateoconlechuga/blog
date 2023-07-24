@@ -1,56 +1,5 @@
 setUpTheme();
-setUpMenuPanel();
 setUpQuotes();
-
-function setUpMenuPanel() {
-  body = document.querySelector("body");
-  menu = document.querySelector("#site-nav-menu");
-  wrapper = document.querySelector("#wrapper");
-  navtoggle = document.querySelector(".nav-toggle");
-
-  // Set up elements that open the menu when clicked
-  navtoggle.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopPropagation();
-    wrapper.classList.toggle("overlay");
-    menu.classList.toggle("active");
-  });
-
-  menu.hide = function(event) {
-    // Already hidden?
-    if (!menu.classList.contains("active")) return;
-
-    // If an event was provided, cancel
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    // Hide
-    menu.classList.remove("active");
-    wrapper.classList.remove("overlay");
-  };
-
-  // Hide menu on link click
-  for (let link of menu.querySelectorAll("a")) {
-    link.addEventListener("click", () => menu.hide());
-  }
-
-  // Hide menu on body click/tap
-  body.addEventListener("click", event => menu.hide(event));
-  body.addEventListener("touchend", event => menu.hide(event));
-
-  // Prevent certain events inside the panel from bubbling and closing the panel
-  menu.addEventListener("click", event => event.stopPropagation());
-  menu.addEventListener("touchend", event => event.stopPropagation());
-  menu.addEventListener("touchstart", event => event.stopPropagation());
-  menu.addEventListener("touchmove", event => event.stopPropagation());
-
-  // Hide menu on ESC
-  window.addEventListener("keydown", function(event) {
-    if (event.keyCode == 27) menu.hide(event);
-  });
-}
 
 function setUpTheme() {
   const giscus = document.querySelector("#giscus");
@@ -96,11 +45,11 @@ function setUpTheme() {
 
     if (mode === "dark") {
       document.getElementById("dark-mode-theme").disabled = false;
-      toggle.innerHTML = "<i class=\"fas fa-sun\"></i>";
+      toggle.innerHTML = "<i class=\"far fa-sun\"></i>";
       sendMessage({ setConfig: { theme: "dark" } });
     } else if (mode === "light") {
       document.getElementById("dark-mode-theme").disabled = true;
-      toggle.innerHTML = "<i class=\"fas fa-moon\"></i>";
+      toggle.innerHTML = "<i class=\"far fa-moon\"></i>";
       sendMessage({ setConfig: { theme: "light" } });
     }
   }
