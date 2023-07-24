@@ -1,8 +1,5 @@
 +++
 title = "About"
-description = ""
-author = ""
-date = ""
 layout = "about"
 type = "about"
 +++
@@ -18,7 +15,7 @@ Don't forget to take it out a minute or so early to get that delicious doughy an
 
 Thanks for visting my site, I hope you have a nice day!
 
-{{< figure src="/img/moscow.jpg" caption="Moscow, Idaho 2014" >}}
+{{< figure src="moscow.webp" caption="Moscow, Idaho 2014" >}}
 
 The site is statically generated with [Hugo](https://gohugo.io/ "Hugo"), and hosted on an old HP G3 EliteDesk I have sitting in my apartment.
 Hack it if you want, I enjoy meeting new people!

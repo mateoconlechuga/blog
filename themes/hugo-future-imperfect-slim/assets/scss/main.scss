@@ -718,7 +718,7 @@ figcaption {
   @include display-flex;
   @include for-laptop-down {
     position: relative;
-    top: -20px;
+    top: -8px;
   }
   color: $utility-gray;
   font-family: $header-font;
@@ -731,7 +731,7 @@ figcaption {
   @include for-laptop-up {
     border-left: $primary-border;
     text-align: right;
-    width: 25%;
+    width: 28%;
   }
   time {
     font-size: 1.2em;
@@ -986,10 +986,6 @@ figcaption {
   }
 }
 
-#dark-mode-toggle {
-  color: $utility-gray;
-}
-
 .mini-post {
   background: $white;
   box-shadow: $shadow-1;
@@ -1016,7 +1012,7 @@ figcaption {
     h2 {
       font-size: 0.7em;
     }
-    time {
+    p {
       font-family: $header-font;
       font-size: 0.6em;
       letter-spacing: 0.25em;

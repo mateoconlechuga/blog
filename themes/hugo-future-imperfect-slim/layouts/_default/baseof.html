@@ -8,12 +8,7 @@
       <main id="site-main">
         {{ block "main" . }}{{ end }}
       </main>
-      {{ if or (eq .Type "adventure") (eq .Type "about") (eq .IsHome true) }}
-        {{ partial "site-adventure-sidebar" . }}
-      {{ end }}
-      {{ if eq .Type "technology" }}
-        {{ partial "site-technology-sidebar" . }}
-      {{ end }}
+      {{ partial "site-adventure-sidebar" . }}
       {{ partial "site-footer" . }}
       {{ partial "scripts" . }}
     </div>

@@ -9,7 +9,13 @@
           {{ .Render "featured" }}
         <header>
           <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-          <time class="published" datetime="{{ .Date }}">{{ .Render "date" }}</time>
+          {{ if .Params.tags }}
+            <p class="published">
+              {{ range first 1 .Params.tags }}
+                <a class="article-terms-link" href="{{ path.Join "tags" (. | urlize | lower) | relLangURL }}/">{{ . }}</a>
+              {{ end }}
+            </p>
+          {{ end }}
         </header>
       </article>
       {{ end }}

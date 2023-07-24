@@ -6,11 +6,15 @@
     {{ else }}
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     {{ end }}
-    {{ with .Description }}
-      <p>{{ . }}</p>
-    {{ end }}
   </div>
   <div class="meta">
-    <time datetime="{{ .Date }}">{{ .Render "date" }}</time>
+    {{ if .Params.tags }}
+      <p class="tags">
+        {{ range first 1 .Params.tags }}
+          <a class="article-terms-link" href="{{ path.Join "tags" (. | urlize | lower) | relLangURL }}/">{{ . }}</a>
+        {{ end }}
+      </p>
+    {{ end }}
+    <p>{{ i18n "reading_time" .ReadingTime }}</p>
   </div>
 </header>

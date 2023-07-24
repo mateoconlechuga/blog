@@ -36,7 +36,7 @@ disableLanguages        = []
   tocWords              = 1000
 
   [params.meta]
-    description         = ""
+    description         = "MateoConLechuga's Adventure Site"
     favicon             = false
     svg                 = true
     faviconVersion      = "1"
@@ -59,7 +59,7 @@ disableLanguages        = []
     alwaysOnHomepage      = false
 
     [params.intro.pic]
-      src                 = "img/main/logo.png"
+      src                 = "img/moscow.webp"
       shape               = "circle"
       width               = ""
       alt                 = ""
@@ -102,20 +102,6 @@ disableLanguages        = []
       encryptedKey      = ""
 
 [menu]
-
-  [[menu.main]]
-    name              = "Adventure"
-    identifier        = "adventure"
-    url               = "adventure"
-    pre               = "<i class='far fa-image'></i>"
-    weight            = 3
-
-  [[menu.main]]
-    name              = "Technology"
-    identifier        = "technology"
-    url               = "technology"
-    pre               = "<i class='far fa-newspaper'></i>"
-    weight            = 4
 
   [[menu.main]]
     name              = "About"

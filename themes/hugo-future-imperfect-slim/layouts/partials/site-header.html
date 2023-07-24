@@ -13,17 +13,10 @@
       </a>
     </h1>
     <menu id="site-nav-menu" class="flyout-menu menu">
-      {{ range .Site.Menus.main }}
-        {{ if and (gt (len (findRE "fa[rsb]( fa-([a-z-]+))+" .Identifier)) 0) (not .Pre) }}
-          {{/* Old syntax: use '.Identifier' for icon rendering */}}
-          <a href="{{ .URL | relLangURL }}" class="nav link"><i class="{{ .Identifier }}">&nbsp;</i>{{ .Name }}</a>
-        {{ else }}
-          {{/* New syntax: use '.Pre' for icon rendering */}}
-          <a href="{{ .URL | relLangURL }}" class="nav link">{{ .Pre | safeHTML}} {{ .Name }}</a>
-        {{ end }}
-      {{ end }}
     </menu>
-    <a id="dark-mode-toggle" class="nav"><i class="fas fa-moon"></i></a>
-    <a href="#site-nav" class="nav nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+    <a href="/about" id="about" class="nav"><i class="far fa-id-card"></i></a>
+    <a href="#dark-mode" id="dark-mode-toggle" class="nav"><i class="far fa-moon"></i></a>
   </nav>
 </header>
+
+
