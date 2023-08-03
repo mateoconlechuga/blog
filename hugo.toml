@@ -1,0 +1,59 @@
+title = "MateoConLechuga"
+languageCode = "en-us"
+copyright = "© 2020-{year}"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+timeZone = "Europe/Berlin"
+theme = ["gallery"]
+disableKinds = ["sitemap", "RSS", "robotsTXT"]
+disableHugoGeneratorInject = true
+
+[params]
+  title = "mateoconlechuga"
+  description = ""
+
+[author]
+  name = "mateoconlechuga"
+
+[outputs]
+  page = ["HTML"]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+
+[imaging]
+  resampleFilter = "CatmullRom"
+  quality = 80
+  [imaging.exif]
+    disableDate = true
+    disableLatLong = true
+    excludeFields = '.*'
+    includeFields = ''
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.112.0"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "hugo_stats.json"
+    target = "assets/watching/hugo_stats.json"
+
+[taxonomies]
+  location = 'location'
+
+[build]
+  writeStats = true
+  [[build.cachebusters]]
+    source = "assets/watching/hugo_stats\\.json"
+    target = "styles\\.css"
+  [[build.cachebusters]]
+    source = "(postcss|tailwind)\\.config\\.js"
+    target = "css"
+  [[build.cachebusters]]
+    source = "assets/.*\\.(js)"
+    target = "js"
+  [[build.cachebusters]]
+    source = "assets/.*\\.(.*)$"
+    target = "$1"

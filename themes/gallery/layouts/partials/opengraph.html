@@ -1,0 +1,12 @@
+<meta property="og:title" content="{{ if .IsHome }}{{ with .Site.Params.title }}{{ . }}{{ end }}{{ else }}{{ .Title }}{{ end }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+
+{{- $images := $.Resources.ByType "image" -}}
+{{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+{{- with $featured -}}
+  <meta property="og:image" content="{{ $featured.Permalink }}" />
+{{- end -}}
+
+{{- with .Params.locale }}<meta property="og:locale" content="{{ . }}" />{{ end }}
+{{- with .Site.Params.title }}<meta property="og:site_name" content="{{ . }}" />{{ end }}
