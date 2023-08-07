@@ -1,28 +1,27 @@
 title = "MateoConLechuga"
 languageCode = "en-us"
-copyright = "© 2020-{year}"
+copyright = "© 2020-{year} Matthew Waltz"
 defaultContentLanguage = "en"
-enableRobotsTXT = true
-timeZone = "Europe/Berlin"
 theme = ["gallery"]
-disableKinds = ["sitemap", "RSS", "robotsTXT"]
+enableRobotsTXT = true
+disableKinds = ["RSS"]
 disableHugoGeneratorInject = true
 
 [params]
-  title = "mateoconlechuga"
-  description = ""
+  title = "MateoConLechuga"
+  description = "Let's go on an adventure"
 
 [author]
-  name = "mateoconlechuga"
+  name = "MateoConLechuga"
 
 [outputs]
   page = ["HTML"]
-  home = ["HTML", "RSS"]
+  home = ["HTML"]
   section = ["HTML"]
 
 [imaging]
   resampleFilter = "CatmullRom"
-  quality = 80
+  quality = 85
   [imaging.exif]
     disableDate = true
     disableLatLong = true
@@ -57,3 +56,10 @@ disableHugoGeneratorInject = true
   [[build.cachebusters]]
     source = "assets/.*\\.(.*)$"
     target = "$1"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false
+      [markup.goldmark.parser.attribute]
+        block = true

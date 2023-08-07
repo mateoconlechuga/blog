@@ -5,6 +5,7 @@ layout: about
 
 Hello, my name is Matt Waltz! I go by [**MateoConLechuga**](https://github.com/mateoconlechuga) online, hence the name of the site.
 I enjoy embedded systems, hardware design, and cybersecurity - but you can usually find me in the mountains.
+This is where I host the pictures I've taken of some of my adventures.
 I am currently employed in Boise Idaho as a Research Engineer for Idaho Scientific designing cryptography cores and reverse engineering computer systems. 
 
 In my free time I love to hike, rock climb, ski, and ice skate - as long as I am moving I am happy!
@@ -14,7 +15,9 @@ Don't forget to take it out a minute or so early to get that delicious doughy an
 
 Thanks for visting my site, I hope you have a nice day!
 
-{{< figure src="moscow.webp" >}}
+![MateoConLechuga in Moscow](moscow.webp)
+{.rounded-2xl}
 
 This site is statically generated with [Hugo](https://gohugo.io/ "Hugo"), and hosted on an HP G3 EliteDesk.
 Hack it if you can, I enjoy meeting new people!
+
