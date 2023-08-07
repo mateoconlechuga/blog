@@ -3,34 +3,20 @@
 @tailwind utilities;
 
 @font-face {
+  src: url('fonts/raleway_400.ttf') format('truetype');
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 400;
-  src: url('fonts/raleway_400.ttf') format('truetype');
 }
 @font-face {
+  src: url('fonts/raleway_800.ttf') format('truetype');
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 800;
-  src: url('fonts/raleway_800.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 900;
-  src: url('fonts/raleway_900.ttf') format('truetype');
-}
-
-@import "../jslibs/photoswipe/dist/photoswipe.css";
-@import "../jslibs/flickr-justified-gallery/dist/fjGallery.css";
-
-@font-face {
+  src: url('fonts/icomoon.ttf') format('truetype');
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?ls6jrc');
-  src:  url('fonts/icomoon.eot?ls6jrc#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?ls6jrc') format('truetype'),
-    url('fonts/icomoon.woff?ls6jrc') format('woff'),
-    url('fonts/icomoon.svg?ls6jrc#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -51,6 +37,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.inner-link {
+  position:relative;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.inner-link a {
+  pointer-events: all;
+}
+
 .icon-about:before {
   content: "\e900";
 }
@@ -60,6 +56,9 @@
 .icon-theme-toggle:before {
   content: "\e901";
 }
+
+@import "../jslibs/photoswipe/dist/photoswipe.css";
+@import "../jslibs/flickr-justified-gallery/dist/fjGallery.css";
 
 html.dark {
   color-scheme: dark;
@@ -71,7 +70,7 @@ html.dark {
 }
 .lazyloaded {
   opacity: 1;
-  transition: opacity 300ms;
+  transition: opacity 250ms;
 }
 img.lazyload:not([src]) {
   visibility: hidden;
