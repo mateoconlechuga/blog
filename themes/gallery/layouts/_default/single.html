@@ -1,3 +1,13 @@
+{{ define "extra_js" }}
+    {{ $lazy := resources.Get "js/lazy.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+    <script src="{{ $lazy.RelPermalink }}" defer></script>
+    {{ $js := resources.Get "js/gallery.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}
+{{ define "extra_css" }}
+    {{ $css := resources.Get "/css/gallery.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+{{ end }}
 {{ define "main" }}
   <div class="mx-auto mb-16 mt-9 max-w-screen-lg px-6 text-center">
     <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ .Title }}</h1>

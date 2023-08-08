@@ -7,10 +7,6 @@ enableRobotsTXT = true
 disableKinds = ["RSS"]
 disableHugoGeneratorInject = true
 
-[params]
-  title = "MateoConLechuga"
-  description = "Let's go on an adventure"
-
 [author]
   name = "MateoConLechuga"
 

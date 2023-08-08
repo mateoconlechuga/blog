@@ -1,7 +1,6 @@
-import fjGallery from "jslibs/flickr-justified-gallery/dist/fjGallery.esm.js";
-import PhotoSwipeLightbox from "jslibs/photoswipe/dist/photoswipe-lightbox.esm.js";
-import PhotoSwipe from "jslibs/photoswipe/dist/photoswipe.esm.js";
-import lazysizes from "jslibs/lazysizes/lazysizes.min.js";
+import fjGallery from "share/flickr-justified-gallery/fjGallery.esm.js";
+import PhotoSwipeLightbox from "share/photoswipe/photoswipe-lightbox.esm.js";
+import PhotoSwipe from "share/photoswipe/photoswipe.esm.js";
 
 const gallery = document.querySelector(".fj-gallery");
 
@@ -57,43 +56,3 @@ if (gallery) {
   });
 }
 
-function setTheme(mode) {
-    var root = document.documentElement;
-
-    if (mode === "dark") {
-        root.classList.add('dark')
-    } else if (mode === "light") {
-        root.classList.remove('dark')
-    }
-
-    localStorage.setItem("theme-storage", mode);
-}
-
-theme = localStorage.getItem("theme-storage");
-if (!theme) {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        theme = "dark";
-    } else {
-        theme = "light";
-    }
-}
-
-setTheme(theme);
-
-if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        setTheme(event.matches ? "dark" : "light");
-    });
-}
-
-toggle = document.getElementById("theme-toggle");
-if (toggle) {
-    toggle.addEventListener("click", () => {
-        theme = localStorage.getItem("theme-storage");
-        if (theme === "light") {
-            setTheme("dark");
-        } else {
-            setTheme("light");
-        }
-    });
-}

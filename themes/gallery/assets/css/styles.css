@@ -37,16 +37,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.inner-link {
-  position:relative;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.inner-link a {
-  pointer-events: all;
-}
-
 .icon-about:before {
   content: "\e900";
 }
@@ -56,9 +46,6 @@
 .icon-theme-toggle:before {
   content: "\e901";
 }
-
-@import "../jslibs/photoswipe/dist/photoswipe.css";
-@import "../jslibs/flickr-justified-gallery/dist/fjGallery.css";
 
 html.dark {
   color-scheme: dark;
@@ -70,7 +57,7 @@ html.dark {
 }
 .lazyloaded {
   opacity: 1;
-  transition: opacity 250ms;
+  transition: opacity 300ms;
 }
 img.lazyload:not([src]) {
   visibility: hidden;
