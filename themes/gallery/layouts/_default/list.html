@@ -1,3 +1,7 @@
+{{ define "extra_js" }}
+    {{ $lazy := resources.Get "js/lazy.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+    <script defer="defer" src="{{ $lazy.RelPermalink }}"></script>
+{{ end }}
 {{ define "main" }}
   {{ if .Title }}
     <div class="mx-auto mb-16 mt-9 max-w-screen-lg px-6 text-center">

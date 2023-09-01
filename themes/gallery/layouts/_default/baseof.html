@@ -15,33 +15,39 @@
     {{ end }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="description" content="{{ block "description" . }}{{ end -}}" />
-    <meta property="og:title" content="{{ if .IsHome }}{{ with .Site.Title }}{{ . }}{{ end }}{{ else }}{{ .Title }}{{ end }}">
-    <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ if .IsHome }}{{ with .Site.Title }}{{ . }}{{ end }}{{ else }}{{ .Params.location }}{{ end }}">
-    {{- $images := $.Resources.ByType "image" -}}
-    {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
-    {{- with $featured -}}
-      {{ $fullname := printf "%s.webp" (strings.TrimSuffix (path.Ext .Name) $featured.Permalink) }}
-      <meta property="og:image" content="{{ absURL $fullname }}" />
+    <meta property="og:url" content="{{ .Permalink }}">
+    {{- if .IsHome -}}
+      <meta property="og:title" content="{{ .Site.Title }}">
+      <meta property="og:description" content="{{ .Site.Title }}">
+      <meta property="og:image" content="{{ absURL "goat_lake_pioneers/018.webp" }}" />
+    {{- else -}}
+      <meta property="og:title" content="{{ .Title }}">
+      <meta property="og:description" content="{{ .Params.location }}">
+      {{- $images := $.Resources.ByType "image" -}}
+      {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+      {{- with $featured -}}
+        {{ $fullname := printf "%s.webp" (strings.TrimSuffix (path.Ext .Name) $featured.Permalink) }}
+        <meta property="og:image" content="{{ absURL $fullname }}" />
+      {{- end -}}
     {{- end -}}
-    <link rel="icon" type="image/svg+xml" href="{{ "images/favicon.svg" | relURL }}" />
-    <link rel="icon" type="image/png" href="{{ "images/favicon.png" | relURL }}" />
-    <link rel="preload" href="/css/fonts/icomoon.ttf" as="font" crossorigin>
-    <link rel="preload" href="/css/fonts/raleway_400.ttf" as="font" crossorigin>
-    <link rel="preload" href="/css/fonts/raleway_800.ttf" as="font" crossorigin>
+    <link rel="icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="preload" href="/css/fonts/icomoon.ttf" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_400.ttf" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_800.ttf" as="font" crossorigin />
     {{ $css := resources.Get "/css/styles.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ block "extra_css" . }}{{ end -}}
     {{ $theme := resources.Get "js/theme.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-    <script src="{{ $theme.RelPermalink }}" defer></script>
+    <script defer="defer" src="{{ $theme.RelPermalink }}"></script>
+    {{ block "extra_js" . }}{{ end -}}
     {{ if .IsHome -}}
       {{ $quotes := resources.Get "js/quotes.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-      <script src="{{ $quotes.RelPermalink }}" defer></script>
-      {{ $lazy := resources.Get "js/lazy.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-      <script src="{{ $lazy.RelPermalink }}" defer></script>
+      <script defer="defer" src="{{ $quotes.RelPermalink }}"></script>
     {{- end }}
-    {{ block "extra_js" . }}{{ end -}}
   </head>
   <body class="flex min-h-full flex-col bg-white text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-100">
     <header class="w-full">
