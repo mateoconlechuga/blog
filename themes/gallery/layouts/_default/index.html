@@ -21,8 +21,6 @@
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ $theme := resources.Get "js/theme.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
     <script defer="defer" src="{{ $theme.RelPermalink }}"></script>
-    {{ $quotes := resources.Get "js/quotes.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-    <script defer="defer" src="{{ $quotes.RelPermalink }}"></script>
   </head>
   <body class="flex min-h-full flex-col bg-white text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-100">
     <header class="w-full">
@@ -48,8 +46,7 @@
         <a rel="me" href="/about" class="button hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-150">About</a>
       </div>
       <div class="mt-6 text-neutral-500 dark:text-neutral-400 md:text-lg text-center">
-        <p id="quote" style="padding-bottom:.55em;">JavaScript is the duct tape of the Internet.</p>
-        <b id="quote-author">~ Charlie Campbell</b>
+        <p style="padding-bottom:.55em;">{{ "<!--# echo var=\"quote\" -->" | safeHTML }}</p><b>{{ "<!--# echo var=\"quote_author\" -->" | safeHTML }}</b>
       </div>
     </main>
   </body>
