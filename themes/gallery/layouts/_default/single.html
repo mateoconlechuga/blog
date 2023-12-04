@@ -12,7 +12,7 @@
   <div class="mx-auto mb-16 mt-9 max-w-screen-lg px-6 text-center">
     <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ .Title }}</h1>
     {{ with .Params.Location }}
-      <a href="{{ path.Join "location" (. | urlize | lower) | relLangURL }}/" title="{{ . }}"><p class="mt-6 text-neutral-500 dark:text-neutral-400 md:text-lg">{{ . }}</p></a>
+      <a href="{{ path.Join "hiking/location" (. | urlize | lower) | relLangURL }}" title="{{ . }}"><p class="mt-6 text-neutral-500 dark:text-neutral-400 md:text-lg">{{ . }}</p></a>
     {{ end }}
   </div>
   <div class="mb-12 mt-9 sm:px-6">

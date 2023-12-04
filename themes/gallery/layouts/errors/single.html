@@ -1,6 +1,51 @@
-{{ define "main" }}
-  <div class="mx-6 text-center md:my-20">
-    <h2 class="my-3 text-3xl font-semibold tracking-tight dark:text-neutral-100 sm:text-5xl">{{ .Title }}</h2>
-    <h1 class="mx-auto mt-6 max-w-screen-md font-semibold">{{ .Params.error }}</h1>
-  </div>
-{{ end }}
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <title>{{ .Site.Title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="{{ block "description" . }}{{ end -}}" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:title" content="{{ .Site.Title }}">
+    <meta property="og:description" content="{{ .Site.Title }}">
+    <meta property="og:image" content="{{ absURL "/error.webp" }}" />
+    <link rel="icon" href="/favicon.svg">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preload" href="/css/fonts/icomoon.ttf" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_400.ttf" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_800.ttf" as="font" crossorigin />
+    {{ $css := resources.Get "/css/styles.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+    {{ $css := resources.Get "/css/home.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+    {{ $theme := resources.Get "js/theme.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+    <script defer="defer" src="{{ $theme.RelPermalink }}"></script>
+  </head>
+  <body class="flex min-h-full flex-col bg-white text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-100">
+    <header class="w-full">
+      <div class="mx-auto flex max-w-screen-3xl flex-wrap justify-between px-6">
+        <div class="flex h-16 w-full justify-between">
+          <a class="no-select inline-flex items-center py-4 text-3xl font-medium dark:text-neutral-100" href="{{ .Site.Home.RelPermalink }}" title="Home">
+            <span class="icon-home"></span>
+          </a>
+          <div class="no-select inline-flex items-center py-4 text-3xl font-medium dark:text-neutral-100" title="About">
+            <button id="theme-toggle" title="Toggle theme"><span class="icon-theme-toggle"></span></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="mx-auto w-10/12 grow text-center">
+      <h2 class="my-3 text-3xl font-semibold tracking-tight dark:text-neutral-100 sm:text-5xl">{{ .Title }}</h2>
+      <h1 class="mx-auto mt-6 max-w-screen-md font-semibold">{{ .Params.error }}</h1>
+      </br>
+      <div class="quicklinks">
+        <a rel="me" href="/" class="button hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-150">Home</a>
+      </div>
+      <img src="/error.webp" class="rounded-2xl" alt="Error Image" />
+    </main>
+    <footer class="mx-auto mb-10 mt-4 flex max-w-screen-3xl flex-none flex-wrap justify-center px-6 text-center text-sm text-neutral-600 dark:text-neutral-400">
+      <p>{{ replace .Site.Copyright "{year}" now.Year }}</p>&nbsp &nbsp
+    </footer>
+  </body>
+</html>

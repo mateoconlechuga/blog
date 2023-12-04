@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 @font-face {
   src: url('fonts/raleway_400.ttf') format('truetype');
   font-family: 'Raleway';
@@ -22,8 +26,24 @@
   font-display: block;
 }
 
+main {
+  animation: fadein 350ms;
+}
+
+.no-select {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.no-select:focus {
+    outline: none !important;
+}
+
 [class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
   font-style: normal;
@@ -31,22 +51,16 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-about:before {
-  content: "\e900";
-}
 .icon-home:before {
   content: "\e902";
 }
 .icon-theme-toggle:before {
   content: "\e901";
 }
-
 html.dark {
   color-scheme: dark;
 }
@@ -61,4 +75,8 @@ html.dark {
 }
 img.lazyload:not([src]) {
   visibility: hidden;
+}
+.post {
+  @apply rounded-2xl bg-neutral-100 transition-[filter] hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-110;
+  -webkit-tap-highlight-color: transparent;
 }

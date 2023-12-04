@@ -18,6 +18,7 @@ var quote_array = [
     ['It takes courage to push yourself to places that you have never been before... to test your limits... to break through barriers. And the day came when the risk it took to remain tight inside the bud was more painful than the risk it took to blossom.', 'Anais Nin'],
     ['Life is to be lived. If you have to support yourself, you had bloody well better find some way that is going to be interesting.', 'Katharine Hepburn'],
     ['The wonderful things in life are the things you do, not the things you have.', 'Reinhold Messner'],
+    ['Ultimately time is all you have and the idea isn\'t to save it, but to savor it', 'Ellen Goodman'],
 ];
 
 let quote = document.getElementById("quote");

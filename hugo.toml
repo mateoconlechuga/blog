@@ -38,6 +38,9 @@ disableHugoGeneratorInject = true
 [taxonomies]
   location = 'location'
 
+[permalinks]
+  location = "/hiking/location/:slug/"
+
 [build]
   writeStats = true
   [[build.cachebusters]]

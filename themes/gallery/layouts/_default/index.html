@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
   <head>
-    <title>{{ .Title }}</title>
+    <title>{{ .Site.Title }}</title>
     <meta charset="utf-8" />
-    {{ if .Params.private }}
-      <meta name="robots" content="noindex, nofollow, noarchive" />
-    {{ end }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <meta name="description" content="{{ .Params.location }}" />
+    <meta name="description" content="{{ block "description" . }}{{ end -}}" />
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ .Permalink }}">
-    <meta property="og:title" content="{{ .Title }}">
-    <meta property="og:description" content="{{ .Params.location }}">
-    {{- $images := $.Resources.ByType "image" -}}
-    {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
-    {{- with $featured -}}
-      {{ $fullname := printf "%s.webp" (strings.TrimSuffix (path.Ext .Name) $featured.Permalink) }}
-      <meta property="og:image" content="{{ absURL $fullname }}" />
-    {{- end -}}
+    <meta property="og:title" content="{{ .Site.Title }}">
+    <meta property="og:description" content="{{ .Site.Title }}">
+    <meta property="og:image" content="{{ absURL "/about.webp" }}" />
     <link rel="icon" href="/favicon.svg">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preload" href="/css/fonts/icomoon.ttf" as="font" crossorigin />
@@ -25,10 +17,12 @@
     <link rel="preload" href="/css/fonts/raleway_800.ttf" as="font" crossorigin />
     {{ $css := resources.Get "/css/styles.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
-    {{ block "extra_css" . }}{{ end -}}
+    {{ $css := resources.Get "/css/home.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ $theme := resources.Get "js/theme.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
     <script defer="defer" src="{{ $theme.RelPermalink }}"></script>
-    {{ block "extra_js" . }}{{ end -}}
+    {{ $quotes := resources.Get "js/quotes.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+    <script defer="defer" src="{{ $quotes.RelPermalink }}"></script>
   </head>
   <body class="flex min-h-full flex-col bg-white text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-100">
     <header class="w-full">
@@ -43,11 +37,21 @@
         </div>
       </div>
     </header>
-    <main class="mx-auto w-full max-w-screen-3xl grow">
-      {{- block "main" . }}{{- end }}
+    <main class="mx-auto w-10/12 grow">
+      <div class="avatar-wrapper">
+        <img src="avatar.webp" width="128" height="128" class="avatar" alt="avatar" />
+        <h1>Matthew Waltz</h1>
+      </div>
+      <div class="quicklinks">
+        <a rel="me" href="/hiking" class="button hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-150">Hiking</a>
+        <a rel="me" href="/blog" class="button hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-150">Blog</a>
+        <a rel="me" href="/about" class="button hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-150">About</a>
+      </div>
+      <div class="mt-6 text-neutral-500 dark:text-neutral-400 md:text-lg text-center">
+        <p id="quote" style="padding-bottom:.55em;">JavaScript is the duct tape of the Internet.</p>
+        <b id="quote-author">~ Charlie Campbell</b>
+      </div>
     </main>
-    <footer class="mx-auto mb-10 mt-4 flex max-w-screen-3xl flex-none flex-wrap justify-center px-6 text-center text-sm text-neutral-600 dark:text-neutral-400">
-      <p>{{ replace .Site.Copyright "{year}" now.Year }}</p>&nbsp &nbsp
-    </footer>
   </body>
 </html>
+
