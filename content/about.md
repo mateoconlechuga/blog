@@ -13,7 +13,7 @@ I'm fairly decent at injuring myself too for some reason.
 
 Thanks for visting!
 
-![MateoConLechuga in Peru](about.webp)
+![MateoConLechuga in Peru](/about.webp)
 {.rounded-2xl}
 
 This site is statically generated with [Hugo](https://gohugo.io/ "Hugo"), and hosted on an HP G3 EliteDesk.
