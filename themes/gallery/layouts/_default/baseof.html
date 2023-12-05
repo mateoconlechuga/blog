@@ -19,10 +19,10 @@
       <meta property="og:image" content="{{ absURL $fullname }}" />
     {{- end -}}
     <link rel="icon" href="/favicon.svg">
-    <link rel="preload" href="/css/fonts/icomoon.ttf" as="font" crossorigin />
-    <link rel="preload" href="/css/fonts/raleway_400.ttf" as="font" crossorigin />
-    <link rel="preload" href="/css/fonts/raleway_800.ttf" as="font" crossorigin />
-    {{ $css := resources.Get "/css/styles.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
+    <link rel="preload" href="/css/fonts/icomoon.woff2" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_400.woff2" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_800.woff2" as="font" crossorigin />
+    {{ $css := resources.Get "/css/style.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ block "extra_css" . }}{{ end -}}
     {{ $theme := resources.Get "js/theme.js" | js.Build (dict "minify" true) | resources.Fingerprint }}

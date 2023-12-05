@@ -11,12 +11,10 @@
     <meta property="og:description" content="{{ .Site.Title }}">
     <meta property="og:image" content="{{ absURL "/about.webp" }}" />
     <link rel="icon" href="/favicon.svg">
-    <link rel="preload" href="/css/fonts/icomoon.ttf" as="font" crossorigin />
-    <link rel="preload" href="/css/fonts/raleway_400.ttf" as="font" crossorigin />
-    <link rel="preload" href="/css/fonts/raleway_800.ttf" as="font" crossorigin />
-    {{ $css := resources.Get "/css/styles.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
-    {{ $css := resources.Get "/css/home.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
+    <link rel="preload" href="/css/fonts/icomoon.woff2" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_400.woff2" as="font" crossorigin />
+    <link rel="preload" href="/css/fonts/raleway_800.woff2" as="font" crossorigin />
+    {{ $css := resources.Get "/css/style.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ $theme := resources.Get "js/theme.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
     <script defer="defer" src="{{ $theme.RelPermalink }}"></script>
@@ -34,7 +32,7 @@
         </div>
       </div>
     </header>
-    <main class="mx-auto w-10/12 grow">
+    <main class="home">
       <div class="avatar-wrapper">
         <img src="avatar.webp" width="128" height="128" class="avatar" alt="avatar" />
         <h1>Matthew Waltz</h1>
@@ -48,6 +46,8 @@
         <p style="padding-bottom:.55em;">{{ "<!--# echo var=\"quote\" -->" | safeHTML }}</p><b>{{ "<!--# echo var=\"quote_author\" -->" | safeHTML }}</b>
       </div>
     </main>
+    <footer class="mx-auto mb-10 mt-4 flex max-w-screen-3xl flex-none flex-wrap justify-center px-6 text-center text-sm">
+    </footer>
   </body>
 </html>
 

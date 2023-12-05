@@ -7,19 +7,21 @@
   100% { opacity: 1; }
 }
 @font-face {
-  src: url('fonts/raleway_400.ttf') format('truetype');
+  src: url('fonts/raleway_400.woff2') format('woff2');
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 400;
+  font-display: block;
 }
 @font-face {
-  src: url('fonts/raleway_800.ttf') format('truetype');
+  src: url('fonts/raleway_800.woff2') format('woff2');
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 800;
+  font-display: block;
 }
 @font-face {
-  src: url('fonts/icomoon.ttf') format('truetype');
+  src: url('fonts/icomoon.woff2') format('woff2');
   font-family: 'icomoon';
   font-weight: normal;
   font-style: normal;
@@ -76,7 +78,41 @@ html.dark {
 img.lazyload:not([src]) {
   visibility: hidden;
 }
+
 .post {
   @apply rounded-2xl bg-neutral-100 transition-[filter] hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-110;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+.avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.home {
+  @apply mx-auto w-10/12 grow;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem 0rem 0rem;
+}
+h1 {
+  font-size: 1.35rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+  margin: 0;
+}
+a.button {
+  text-decoration: inherit;
+  text-align: center;
+  display: block;
+  background-color: #e5e5e5;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 1rem;
   -webkit-tap-highlight-color: transparent;
 }
