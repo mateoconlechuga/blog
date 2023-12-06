@@ -16,8 +16,6 @@
     <link rel="preload" href="/css/fonts/raleway_800.woff2" as="font" crossorigin />
     {{ $css := resources.Get "/css/style.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
-    {{ $css := resources.Get "/css/home.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ $theme := resources.Get "js/theme.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
     <script defer="defer" src="{{ $theme.RelPermalink }}"></script>
   </head>
@@ -39,7 +37,7 @@
       <h1 class="mx-auto mt-6 max-w-screen-md font-semibold">{{ .Params.error }}</h1>
       </br>
       <div class="quicklinks">
-        <a rel="me" href="/" class="button hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-150">Home</a>
+        <a href="/" class="button hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-150">Home</a>
       </div>
       <img src="/error.webp" class="rounded-2xl" alt="Error Image" />
     </main>
