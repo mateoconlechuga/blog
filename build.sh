@@ -8,6 +8,4 @@ if [ $? -ne 0 ]; then
 fi
 cd public
 find . -name '*.jpg' -exec /bin/rm {} \;
-for file in $(find . -type f \( -iname '*.html' -o -iname '*.css' -o -iname '*.js' -o -iname '*.svg' \) ); do gzip -9nkf $file; done
-rm -rf location index.html.gz
-
+rm -rf location

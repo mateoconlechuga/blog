@@ -4,7 +4,7 @@ copyright = "© 2020-{year} Matthew Waltz"
 defaultContentLanguage = "en"
 theme = ["gallery"]
 enableRobotsTXT = true
-disableKinds = ["RSS"]
+disableKinds = ["RSS", "sitemap"]
 disableHugoGeneratorInject = true
 
 [author]
